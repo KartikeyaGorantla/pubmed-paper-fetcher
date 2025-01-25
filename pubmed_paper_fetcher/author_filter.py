@@ -26,15 +26,6 @@ class AuthorFilter:
 
     @classmethod
     def is_non_academic_author(cls, author: Dict) -> bool:
-        """
-        Determine if an author is from a non-academic institution.
-
-        Args:
-            author (Dict): Author details dictionary
-
-        Returns:
-            bool: True if likely non-academic, False otherwise
-        """
         affiliation = author.get("affiliation", "").lower()
 
         # Check for pharma keywords
@@ -67,15 +58,6 @@ class AuthorFilter:
 
     @classmethod
     def filter_non_academic_papers(cls, papers: List[Dict]) -> List[Dict]:
-        """
-        Filter papers to include only those with non-academic authors.
-
-        Args:
-            papers (List[Dict]): List of papers with author details
-
-        Returns:
-            List[Dict]: Filtered list of papers
-        """
         filtered_papers = []
 
         for paper in papers:

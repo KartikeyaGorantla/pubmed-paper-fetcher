@@ -13,11 +13,6 @@ from .author_filter import AuthorFilter
 @click.option('-f', '--file', type=click.Path(), help='Specify filename to save results')
 @click.option('-m', '--max-results', default=100, help='Maximum number of results to fetch')
 def main(query: str, show_help: bool, debug: bool, file: Optional[str], max_results: int):
-    """
-    Fetch research papers from PubMed with non-academic author filtering.
-    
-    QUERY: PubMed search query string
-    """
     # Handle help option
     if show_help:
         ctx = click.get_current_context()

@@ -83,15 +83,7 @@ class PubMedFetcher:
             return []
 
     def _parse_article(self, article: ET.Element) -> Optional[Dict]:
-        """
-        Parse individual article XML to extract relevant details.
-
-        Args:
-            article (ET.Element): XML element for a single article
-
-        Returns:
-            Dictionary with paper details or None
-        """
+        
         try:
             # Extract title
             title_elem = article.find(".//ArticleTitle")
