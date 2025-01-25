@@ -1,49 +1,74 @@
 # PubMed Paper Fetcher
 
 ## Overview
-A Python CLI tool to fetch research papers from PubMed, with advanced filtering for non-academic authors.
+A Python CLI tool to fetch and filter research papers from PubMed, focusing on non-academic author identification.
 
 ## Features
 - Fetch papers via PubMed API
-- Filter for non-academic authors
+- Advanced non-academic author filtering
 - Customizable search queries
-- CSV output support
+- CSV export capabilities
+- Debug logging
+
+## Prerequisites
+- Python 3.9+
+- Poetry (Python dependency management)
 
 ## Installation
 
+### 1. Install Poetry
 ```bash
-# Install Poetry
 pip install poetry
+# Check if poetry is installed
+poetry --version
+# if not installed, add poetry to PATH
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\<username>\AppData\Roaming\Python\Scripts", "User")
+```
 
-# Clone the repository
-git clone https://github.com/yourusername/pubmed-paper-fetcher.git
+### 2. Clone Repository
+```bash
+git clone https://github.com/KartikeyaGorantla/pubmed-paper-fetcher.git
 cd pubmed-paper-fetcher
+```
 
-# Install dependencies
+### 3. Install Dependencies
+```bash
 poetry install
 ```
 
 ## Usage
 
+### Basic Search
 ```bash
-# Basic usage
-poetry run get-papers-list "cancer immunotherapy"
-
-# With debug logging
-poetry run get-papers-list "cancer immunotherapy" -d
-
-# Save to CSV
-poetry run get-papers-list "cancer immunotherapy" -f results.csv
+poetry run get-papers-list "cancer drug discovery"
 ```
 
-## Development
-- Python 3.9+
-- Dependencies managed via Poetry
-- Testing with pytest
-- Type checking with mypy
+### Advanced Options
+```bash
+# Save results to CSV
+poetry run get-papers-list "cancer research" -f results.csv
 
-## Tools Used
-- Requests for HTTP interactions
-- Biopython for XML parsing
-- Pandas for data manipulation
-- Click for CLI interface
+# Enable debug logging
+poetry run get-papers-list "biotechnology" -d
+
+# Limit results
+poetry run get-papers-list "pharmaceutical research" -m 50
+```
+
+### Command-Line Options
+- `-h, --help`: Display usage instructions
+- `-d, --debug`: Enable detailed logging
+- `-f, --file`: Specify output CSV filename
+- `-m, --max-results`: Set maximum number of papers to fetch
+
+## Project Structure
+- `pubmed_paper_fetcher/`
+  - `pubmed_api.py`: PubMed API interaction
+  - `author_filter.py`: Non-academic author detection
+  - `cli.py`: Command-line interface
+
+## Dependencies
+- requests
+- biopython
+- pandas
+- click
