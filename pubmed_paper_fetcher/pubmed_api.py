@@ -4,7 +4,12 @@ from typing import List, Dict, Optional
 import pandas as pd
 import re
 import logging
+from .config import PUBMED_API_KEY
 
+class PubMedFetcher:
+    def __init__(self, api_key: Optional[str] = PUBMED_API_KEY):
+        self.api_key = api_key
+        # Rest of the existing code remains the same
 
 class PubMedFetcher:
     BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
@@ -14,16 +19,6 @@ class PubMedFetcher:
         self.logger = logging.getLogger(__name__)
 
     def search_papers(self, query: str, max_results: int = 100) -> List[Dict]:
-        """
-        Search PubMed for papers matching the query.
-
-        Args:
-            query (str): Search query string
-            max_results (int): Maximum number of results to fetch
-
-        Returns:
-            List of dictionaries containing paper details
-        """
         search_params = {
             "db": "pubmed",
             "term": query,
@@ -31,7 +26,7 @@ class PubMedFetcher:
             "retmode": "xml",
         }
         if self.api_key:
-            search_params["57ca49da6d771c26f82aaa51d18bcc898f09"] = self.api_key
+            search_params["api_key"] = self.api_key
 
         try:
             response = requests.get(
@@ -51,15 +46,6 @@ class PubMedFetcher:
             return []
 
     def _fetch_paper_details(self, id_list: List[str]) -> List[Dict]:
-        """
-        Fetch detailed information for given PubMed IDs.
-
-        Args:
-            id_list (List[str]): List of PubMed IDs
-
-        Returns:
-            List of dictionaries with paper details
-        """
         details_params = {"db": "pubmed", "id": ",".join(id_list), "retmode": "xml"}
 
         try:

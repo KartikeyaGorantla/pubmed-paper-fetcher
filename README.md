@@ -36,6 +36,11 @@ cd pubmed-paper-fetcher
 poetry install
 ```
 
+## API Key Configuration
+1. Open `pubmed_paper_fetcher/config.py`
+2. Add your PubMed API key
+
+
 ## Usage
 
 ### Basic Search
