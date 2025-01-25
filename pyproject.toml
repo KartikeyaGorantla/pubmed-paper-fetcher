@@ -1,0 +1,27 @@
+[project]
+name = "pubmed-paper-fetcher"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "KartikeyaGorantla",email = "gorantlakartikeya@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "biopython (>=1.85,<2.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "click (>=8.1.8,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+mypy = "^1.14.1"
+
+[tool.poetry.scripts]
+get-papers-list = "pubmed_paper_fetcher.cli:main"
